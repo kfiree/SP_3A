@@ -1,58 +1,77 @@
 #include "NumberWithUnits.hpp"
 #include <iostream>
+#include <fstream>
+#include <sstream>
+#include <stdio.h>
+#include <string>
 
+using namespace ariel;
 using namespace std;
 
 namespace ariel
 {
-    void NumberWithUnits::read_units(ifstream& file){
+            NumberWithUnits::NumberWithUnits(double num, const char* type){
+                this->val=num;
+                this->unit=type;
+            }
+            
+            void ariel::NumberWithUnits::read_units(ifstream& file){
 
-    }
+            }
 
+            /** 
+                //////////////////////////////////
+                ///// operator overloading ///////
+                //////////////////////////////////
+            **/
 
             // unary operators
-            NumberWithUnits& operator-(NumberWithUnits a){
+            NumberWithUnits operator-(const NumberWithUnits& a){
                 return a;
             }
 
-            NumberWithUnits& operator+(NumberWithUnits a){
-                return  a;
+            NumberWithUnits operator+(const NumberWithUnits& a){
+                return a;
             }
 
 
             // arithmetecs operators
-            const NumberWithUnits& operator*(double mult, const NumberWithUnits& a){
+            NumberWithUnits operator*(double mult, const NumberWithUnits& a){
                 return a;
             }
             
-            const NumberWithUnits& operator*(const NumberWithUnits& b, const NumberWithUnits& a){
+            NumberWithUnits operator*(const NumberWithUnits& b, const NumberWithUnits& a){
                 return a;
             }
 
-            NumberWithUnits& operator+(NumberWithUnits& a, const NumberWithUnits& b){
+            NumberWithUnits operator+(const NumberWithUnits& a, const NumberWithUnits& b){
                 return a;
             }
-            NumberWithUnits& operator+=(NumberWithUnits& a, const NumberWithUnits& b){
-                return a;
-            }
-
-            NumberWithUnits& operator-(NumberWithUnits& a, const NumberWithUnits& b){
+            NumberWithUnits operator+=(const NumberWithUnits& a, const NumberWithUnits& b){
                 return a;
             }
 
-            NumberWithUnits& operator-=(NumberWithUnits& a, const NumberWithUnits& b){
+            NumberWithUnits operator-(const NumberWithUnits& a, const NumberWithUnits& b){
                 return a;
             }
 
-            NumberWithUnits& operator++(NumberWithUnits& a){
+            NumberWithUnits operator-=(const NumberWithUnits& a, const NumberWithUnits& b){
                 return a;
             }
 
-            const NumberWithUnits operator--(NumberWithUnits& a, int){
+            NumberWithUnits operator++(const NumberWithUnits& a){
                 return a;
             }
 
-            NumberWithUnits& operator--(NumberWithUnits& a){
+            NumberWithUnits operator++(const NumberWithUnits& a, int){
+                return a;
+            }
+
+            NumberWithUnits operator--(const NumberWithUnits& a, int){
+                return a;
+            }
+
+            NumberWithUnits operator--(const NumberWithUnits& a){
                 return a;
             }
 
@@ -82,7 +101,7 @@ namespace ariel
             ostream& operator<< (ostream& out, const NumberWithUnits& num){ 
                 return out;
             }
-            istream& operator>> (istream& input, const NumberWithUnits& num){
+            istream& operator>> (istream& input, NumberWithUnits& num){
                 return input;
             }
 

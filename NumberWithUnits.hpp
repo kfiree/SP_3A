@@ -1,12 +1,12 @@
 #pragma once
 
-#include <map> 
-#include <vector>
+
 #include <string>
 #include <iostream>
+#include <fstream>
 
-using std::string;
-using std::ifstream;
+using namespace std;
+
 
 namespace ariel{
 
@@ -15,34 +15,27 @@ namespace ariel{
             double val;
             string unit;
         public:
-
-            NumberWithUnits(double num, string unit){
-                this->val = num;
-                this->unit = unit;
-            }
+            NumberWithUnits(double num, const char* type);
             ~NumberWithUnits(){}
 
             static void read_units(ifstream& file); 
 
             // unary operators
-            friend NumberWithUnits& operator-(const NumberWithUnits& a);
-            friend NumberWithUnits& operator+(const NumberWithUnits& a);
-
-
+            friend NumberWithUnits operator-(const NumberWithUnits& a);
+            friend NumberWithUnits operator+(const NumberWithUnits& a);
+            
             // arithmetecs operators
-            friend const NumberWithUnits& operator*(double mult, const NumberWithUnits& a);
-            friend const NumberWithUnits& operator*(const NumberWithUnits& a, const NumberWithUnits& b);
-            friend NumberWithUnits& operator+(NumberWithUnits& a, const NumberWithUnits& b);
-            friend NumberWithUnits& operator+=(NumberWithUnits& a, const NumberWithUnits& b);
-            friend NumberWithUnits& operator-(NumberWithUnits& a, const NumberWithUnits& b);
-            friend NumberWithUnits& operator-=(NumberWithUnits& a, const NumberWithUnits& b);
+            friend NumberWithUnits operator*(double mult, const NumberWithUnits& a);
+            friend NumberWithUnits operator+(const NumberWithUnits& a, const NumberWithUnits& b);
+            friend NumberWithUnits operator+=(const NumberWithUnits& a, const NumberWithUnits& b);
+            friend NumberWithUnits operator-(const NumberWithUnits& a, const NumberWithUnits& b);
+            friend NumberWithUnits operator-=(const NumberWithUnits& a, const NumberWithUnits& b);
 
-            // prefix and postfix. => ++x  operator++(), x++  operator++(int)
-            friend NumberWithUnits& operator++(NumberWithUnits& a);
-            friend const NumberWithUnits operator++(NumberWithUnits& a, int);
-
-            friend NumberWithUnits& operator--(NumberWithUnits& a);
-            friend const NumberWithUnits operator--(NumberWithUnits& a, int);
+            // prefix ( operator++() ) and postfix ( operator++(int) )
+            friend NumberWithUnits operator++(const NumberWithUnits& a);
+            friend NumberWithUnits operator++(const NumberWithUnits& a, int);
+            friend NumberWithUnits operator--(const NumberWithUnits& a);
+            friend NumberWithUnits operator--(const NumberWithUnits& a, int);
 
 
             // compering operators
